@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Application;
 
 class ApplicationController extends Controller
 {
@@ -14,6 +15,12 @@ class ApplicationController extends Controller
 
     public function store(Request $request)
     {
+        $existingApplication = Application::where('user_id', auth()->id())->first();
+
+        if ($existingApplication) {
+        return redirect('/application/preview/' . $existingApplication->id);
+    }
+
         $validated = $request->validate([
             'full_name' => 'required',
             'phone' => 'required',
@@ -27,8 +34,33 @@ class ApplicationController extends Controller
 
         $validated['user_id'] = auth()->id();
 
-        Application::create($validated);
+        $application = Application::create($validated);
 
-        return redirect()->back()->with('success', 'Application submitted successfully!');
+        //return redirect()->route('application.preview', $application);
+       return redirect()->route('application.preview', ['application' => $application->id]);
+       // return redirect('/application/preview/' . $application->id);
     }
+
+    public function preview(Application $application)
+{
+    if ($application->user_id !== auth()->id()) {
+        abort(403);
+    }
+
+    return view('application.preview', compact('application'));
+}
+
+    public function submit(Application $application)
+{
+    if ($application->user_id !== auth()->id()) {
+        abort(403);
+    }
+
+    $application->update([
+        'status' => 'submitted',
+        'submitted_at' => now(),
+    ]);
+
+    return redirect()->route('dashboard')->with('success', 'Application submitted successfully!');
+}
 }

@@ -13,6 +13,23 @@ return new class extends Migration
     {
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+
+            $table->string('full_name');
+            $table->string('phone');
+            $table->string('gender');
+            $table->date('dob');
+            $table->text('address');
+
+            $table->string('school');
+            $table->string('qualification');
+            $table->string('cgpa')->nullable();
+
+            $table->string('passport')->nullable();
+
+            $table->enum('status', ['draft', 'submitted'])->default('draft');
+
+            $table->timestamp('submitted_at')->nullable();
             $table->timestamps();
         });
     }
