@@ -63,4 +63,43 @@ class ApplicationController extends Controller
 
     return redirect()->route('dashboard')->with('success', 'Application submitted successfully!');
 }
+
+public function edit(Application $application)
+{
+    if ($application->user_id !== auth()->id()) {
+        abort(403);
+    }
+
+    if ($application->status === 'submitted') {
+        return redirect()->back()->with('error', 'Submitted applications cannot be edited.');
+    }
+
+    return view('application.edit', compact('application'));
+}
+
+public function update(Request $request, Application $application)
+{
+    if ($application->user_id !== auth()->id()) {
+        abort(403);
+    }
+
+    if ($application->status === 'submitted') {
+        return redirect()->back()->with('error', 'Submitted applications cannot be edited.');
+    }
+
+    $validated = $request->validate([
+        'full_name' => 'required',
+        'phone' => 'required',
+        'gender' => 'required',
+        'dob' => 'required',
+        'address' => 'required',
+        'school' => 'required',
+        'qualification' => 'required',
+        'cgpa' => 'nullable',
+    ]);
+
+    $application->update($validated);
+
+    return redirect()->route('application.preview', $application);
+}
 }

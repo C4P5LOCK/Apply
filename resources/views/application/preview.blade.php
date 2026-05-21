@@ -20,6 +20,10 @@
                 <form method="POST" action="{{ route('application.submit', $application) }}" class="mt-8">
                     @csrf
 
+                    <a href="{{ route('application.edit', $application) }}"
+                         class="bg-gray-200 px-6 py-3 rounded mr-3">
+                         Edit Application
+                    </a>
                     <button type="submit" class="bg-black text-white px-6 py-3 rounded">
                         Final Submit
                     </button>
