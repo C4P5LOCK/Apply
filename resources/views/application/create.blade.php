@@ -11,7 +11,7 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('application.store') }}">
+        <form method="POST" action="{{ route('application.store') }}" enctype="multipart/form-data">
             @csrf
 
             <div class="grid grid-cols-1 gap-4">
@@ -49,6 +49,8 @@
                     placeholder="CGPA"
                     class="border rounded p-3">
 
+                <input type="file" name="passport" class="border rounded p-3">
+                
                 <button class="bg-black text-white p-3 rounded">
                     Submit Application
                 </button>

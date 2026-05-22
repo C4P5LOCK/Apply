@@ -30,9 +30,14 @@ class ApplicationController extends Controller
             'school' => 'required',
             'qualification' => 'required',
             'cgpa' => 'nullable',
+            'passport' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         $validated['user_id'] = auth()->id();
+
+        if ($request->hasFile('passport')) {
+             $validated['passport'] = $request->file('passport')->store('passports', 'public');
+        }
 
         $application = Application::create($validated);
 
@@ -96,8 +101,12 @@ public function update(Request $request, Application $application)
         'school' => 'required',
         'qualification' => 'required',
         'cgpa' => 'nullable',
+        'passport' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
     ]);
 
+    if ($request->hasFile('passport')) {
+     $validated['passport'] = $request->file('passport')->store('passports', 'public');
+        }
     $application->update($validated);
 
     return redirect()->route('application.preview', $application);

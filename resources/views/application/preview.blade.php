@@ -6,6 +6,10 @@
                 <h2 class="text-2xl font-bold mb-6">Application Preview</h2>
 
                 <div class="space-y-4">
+                    @if($application->passport)
+                      <img src="{{ asset('storage/' . $application->passport) }}"
+                      class="w-32 h-32 object-cover rounded mb-4">
+                    @endif
                     <p><strong>Full Name:</strong> {{ $application->full_name }}</p>
                     <p><strong>Phone:</strong> {{ $application->phone }}</p>
                     <p><strong>Gender:</strong> {{ $application->gender }}</p>

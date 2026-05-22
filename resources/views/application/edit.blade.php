@@ -8,7 +8,7 @@
                 </h2>
 
                 <form method="POST"
-                      action="{{ route('application.update', $application) }}">
+                      action="{{ route('application.update', $application) }}" enctype="multipart/form-data">
 
                     @csrf
                     @method('PUT')
@@ -59,6 +59,14 @@
                                name="cgpa"
                                value="{{ $application->cgpa }}"
                                class="border rounded p-3">
+
+                               @if($application->passport)
+
+                                <img src="{{ asset('storage/' . $application->passport) }}"
+                                    class="w-32 h-32 object-cover rounded mb-4">
+
+                                 @endif
+                        <input type="file" name="passport" class="border rounded p-3" value="{{ $application->passport}}">
 
                         <button class="bg-black text-white p-3 rounded">
                             Update Application
