@@ -27,8 +27,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/application/create', [ApplicationController::class, 'create'])->name('application.create');
 
     Route::post('/application/store', [ApplicationController::class, 'store'])->name('application.store');
-Route::get('/application/preview/{application}', [ApplicationController::class, 'preview'])->name('application.preview');
-Route::post('/application/submit/{application}', [ApplicationController::class, 'submit'])->name('application.submit');
+    Route::get('/application/preview/{application}', [ApplicationController::class, 'preview'])->name('application.preview');
+    Route::post('/application/submit/{application}', [ApplicationController::class, 'submit'])->name('application.submit');
+
+    Route::get('/application/edit/{application}', [ApplicationController::class, 'edit'])->name('application.edit');
+
+    Route::put('/application/update/{application}', [ApplicationController::class, 'update'])->name('application.update');
 });
 
 require __DIR__.'/auth.php';
