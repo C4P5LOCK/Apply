@@ -27,7 +27,7 @@ return new class extends Migration
 
             $table->string('passport')->nullable();
 
-            $table->enum('status', ['draft', 'submitted'])->default('draft');
+            $table->enum('status', ['draft', 'submitted','approved','rejected','under_review'])->default('draft');
 
             $table->timestamp('submitted_at')->nullable();
             $table->timestamps();

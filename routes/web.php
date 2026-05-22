@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ApplicationController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Application;
+use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -33,6 +34,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/application/edit/{application}', [ApplicationController::class, 'edit'])->name('application.edit');
 
     Route::put('/application/update/{application}', [ApplicationController::class, 'update'])->name('application.update');
+});
+
+Route::middleware(['auth', 'admin'])->group(function () {
+
+    Route::get('/admin/dashboard',[AdminController::class, 'dashboard'])->name('admin.dashboard');
+
+    Route::get('/admin/application/{application}',[AdminController::class, 'show'])->name('admin.application.show');
+
+    Route::post('/admin/application/{application}/status',[AdminController::class, 'updateStatus'])->name('admin.application.status');
 });
 
 require __DIR__.'/auth.php';
