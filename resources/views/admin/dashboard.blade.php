@@ -10,6 +10,48 @@
                     Admin Dashboard
                 </h2>
 
+                                <form method="GET"
+                    action="{{ route('admin.dashboard') }}"
+                    class="mb-6 flex gap-4">
+
+                    <input type="text"
+                        name="search"
+                        placeholder="Search name or school"
+                        value="{{ request('search') }}"
+                        class="border rounded p-3 w-full">
+
+                    <select name="status"
+                            class="border rounded p-3">
+
+                        <option value="">All Statuses</option>
+
+                        <option value="submitted"
+                            {{ request('status') === 'submitted' ? 'selected' : '' }}>
+                            Submitted
+                        </option>
+
+                        <option value="under_review"
+                            {{ request('status') === 'under_review' ? 'selected' : '' }}>
+                            Under Review
+                        </option>
+
+                        <option value="approved"
+                            {{ request('status') === 'approved' ? 'selected' : '' }}>
+                            Approved
+                        </option>
+
+                        <option value="rejected"
+                            {{ request('status') === 'rejected' ? 'selected' : '' }}>
+                            Rejected
+                        </option>
+
+                    </select>
+
+                    <button class="bg-black text-white px-6 rounded">
+                        Filter
+                    </button>
+
+                </form>
                 <table class="w-full border">
 
                     <thead>
@@ -37,7 +79,17 @@
                                 </td>
 
                                 <td class="p-3">
-                                    {{ ucfirst($application->status) }}
+                                    
+                                    <span class="px-3 py-1 rounded text-sm
+                                            @if($application->status === 'approved') bg-green-100 text-green-700
+                                            @elseif($application->status === 'rejected') bg-red-100 text-red-700
+                                            @elseif($application->status === 'under_review') bg-yellow-100 text-yellow-700
+                                            @elseif($application->status === 'submitted') bg-blue-100 text-blue-700
+                                            @else bg-gray-100 text-gray-700
+                                            @endif
+                                             ">
+                                            {{ ucfirst(str_replace('_', ' ', $application->status)) }}
+                                        </span> 
                                 </td>
 
                                 <td class="p-3">

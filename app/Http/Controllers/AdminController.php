@@ -7,12 +7,24 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function dashboard()
+    public function dashboard(Request $request)
     {
-        $applications = Application::latest()->get();
+    $query = Application::query();
 
-        return view('admin.dashboard', compact('applications'));
+    if ($request->filled('search')) {
+        $query->where('full_name', 'like', '%' . $request->search . '%')
+              ->orWhere('school', 'like', '%' . $request->search . '%');
     }
+
+    if ($request->filled('status')) {
+        $query->where('status', $request->status);
+    }
+
+    $applications = $query->latest()->get();
+
+    return view('admin.dashboard', compact('applications'));
+    }
+
 
     public function show(Application $application)
     {

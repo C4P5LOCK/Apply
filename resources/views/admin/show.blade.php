@@ -46,15 +46,15 @@
                 <select name="status"
                         class="border rounded p-3">
 
-                    <option value="under_review">
+                    <option value="under_review" {{ $application->status === 'under_review' ? 'selected' : '' }}>
                         Under Review
                     </option>
 
-                    <option value="approved">
+                    <option value="approved" {{ $application->status === 'approved' ? 'selected' : '' }}>
                         Approved
                     </option>
 
-                    <option value="rejected">
+                    <option value="rejected" {{ $application->status === 'rejected' ? 'selected' : '' }}>
                         Rejected
                     </option>
 

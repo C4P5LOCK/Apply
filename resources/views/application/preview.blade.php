@@ -18,7 +18,16 @@
                     <p><strong>School:</strong> {{ $application->school }}</p>
                     <p><strong>Qualification:</strong> {{ $application->qualification }}</p>
                     <p><strong>CGPA:</strong> {{ $application->cgpa ?? 'N/A' }}</p>
-                    <p><strong>Status:</strong> {{ ucfirst($application->status) }}</p>
+                    <p><strong>Status:</strong> <span class="px-3 py-1 rounded text-sm
+                                @if($application->status === 'approved') bg-green-100 text-green-700
+                                @elseif($application->status === 'rejected') bg-red-100 text-red-700
+                                @elseif($application->status === 'under_review') bg-yellow-100 text-yellow-700
+                                @elseif($application->status === 'submitted') bg-blue-100 text-blue-700
+                                @else bg-gray-100 text-gray-700
+                                @endif
+                            ">
+                                {{ ucfirst(str_replace('_', ' ', $application->status)) }}
+                    </span></p>
                 </div>
 
                 <form method="POST" action="{{ route('application.submit', $application) }}" class="mt-8">
