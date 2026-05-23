@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ApplicationStatusMail;
+use Illuminate\Support\Facades\Mail;
 use App\Models\Application;
 use Illuminate\Http\Request;
 
@@ -40,6 +42,8 @@ class AdminController extends Controller
     $application->update([
         'status' => $request->status
     ]);
+
+    Mail::to($application->user->email)->send(new ApplicationStatusMail($application));
 
     return redirect()->back()->with('success', 'Application status updated.');
     }
