@@ -20,7 +20,7 @@ class AdminController extends Controller
         $query->where('status', $request->status);
     }
 
-    $applications = $query->latest()->get();
+    $applications = $query->latest()->paginate(5);
 
     return view('admin.dashboard', compact('applications'));
     }
