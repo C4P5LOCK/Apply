@@ -56,6 +56,7 @@
 
                     <thead>
                         <tr class="border-b bg-gray-100">
+                            <th class="p-3 text-left">APP NO<th>
                             <th class="p-3 text-left">Name</th>
                             <th class="p-3 text-left">School</th>
                             <th class="p-3 text-left">Status</th>
@@ -70,6 +71,10 @@
 
                             <tr class="border-b">
 
+                            <td class="p-3">
+                                {{$application->application_number}}
+                                </td>
+                                
                                 <td class="p-3">
                                     {{ $application->full_name }}
                                 </td>

@@ -27,6 +27,8 @@
 
                 <p><strong>Name:</strong> {{ $application->full_name }}</p>
 
+                <p><strong>APP_NO:</strong> {{$application->application_number}}</p>
+
                 <p><strong>Phone:</strong> {{ $application->phone }}</p>
 
                 <p><strong>School:</strong> {{ $application->school }}</p>
@@ -63,6 +65,7 @@
                 <button class="bg-black text-white px-6 py-3 rounded ml-3">
                     Update Status
                 </button>
+
 
             </form>
 

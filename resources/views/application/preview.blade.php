@@ -11,6 +11,7 @@
                       class="w-32 h-32 object-cover rounded mb-4">
                     @endif
                     <p><strong>Full Name:</strong> {{ $application->full_name }}</p>
+                    <p><strong>APP_NO:</strong> {{$application->application_number}}</p>
                     <p><strong>Phone:</strong> {{ $application->phone }}</p>
                     <p><strong>Gender:</strong> {{ $application->gender }}</p>
                     <p><strong>Date of Birth:</strong> {{ $application->dob }}</p>

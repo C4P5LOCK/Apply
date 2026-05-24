@@ -41,9 +41,12 @@ class ApplicationController extends Controller
 
         $application = Application::create($validated);
 
-        //return redirect()->route('application.preview', $application);
-       return redirect()->route('application.preview', ['application' => $application->id]);
-       // return redirect('/application/preview/' . $application->id);
+        $application->application_number = 'APP-' . date('Y') . '-' . str_pad($application->id, 4, '0', STR_PAD_LEFT);
+
+        $application->save();
+        
+        return redirect()->route('application.preview', ['application' => $application->id]);
+       
     }
 
     public function preview(Application $application)
