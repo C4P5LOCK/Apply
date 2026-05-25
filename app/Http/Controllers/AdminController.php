@@ -18,19 +18,19 @@ class AdminController extends Controller
               ->orWhere('school', 'like', '%' . $request->search . '%');
     }
 
-    if ($request->filled('status')) {
-        $query->where('status', $request->status);
+    if ($request->filled('progress')) {
+        $query->where('progress', $request->progress);
     }
 
     $totalApplications = Application::count();
 
     $submittedApplications = Application::where('status', 'submitted')->count();
 
-    $underReviewApplications = Application::where('status', 'under_review')->count();
+    $underReviewApplications = Application::where('progress', 'pending')->count();
 
-    $approvedApplications = Application::where('status', 'approved')->count();
+    $approvedApplications = Application::where('progress', 'approved')->count();
 
-    $rejectedApplications = Application::where('status', 'rejected')->count();
+    $rejectedApplications = Application::where('progress', 'rejected')->count();
 
     $applications = $query->latest()->paginate(5);
 
@@ -50,11 +50,13 @@ class AdminController extends Controller
     public function updateStatus(Request $request, Application $application)
     {
     $request->validate([
-        'status' => 'required'
+        'progress' => 'required',
+        'admin_comment' => 'nullable'
     ]);
 
     $application->update([
-        'status' => $request->status
+        'progress' => $request->progress,
+        'admin_comment' => $request->admin_comment
     ]);
 
     Mail::to($application->user->email)->send(new ApplicationStatusMail($application));

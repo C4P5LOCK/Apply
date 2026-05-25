@@ -45,29 +45,29 @@
 
                 @csrf
 
-                <select name="status"
+                <select name="progress"
                         class="border rounded p-3">
 
-                    <option value="under_review" {{ $application->status === 'under_review' ? 'selected' : '' }}>
-                        Under Review
+                    <option value="pending" {{ $application->progress === 'pending' ? 'selected' : '' }}>
+                        Pending
                     </option>
 
-                    <option value="submitted" {{ $application->status === 'submitted' ? 'selected' : '' }}>
-                        Submitted
-                    </option>
 
-                    <option value="approved" {{ $application->status === 'approved' ? 'selected' : '' }}>
+                    <option value="approved" {{ $application->progress === 'approved' ? 'selected' : '' }}>
                         Approved
                     </option>
 
-                    <option value="rejected" {{ $application->status === 'rejected' ? 'selected' : '' }}>
+                    <option value="rejected" {{ $application->progress === 'rejected' ? 'selected' : '' }}>
                         Rejected
                     </option>
 
                 </select>
 
+                <textarea name="admin_comment" class="border rounded p-3 w-full mt-4" rows="4"
+                   placeholder="Leave admin comment...">{{ $application->admin_comment }}</textarea>
+
                 <button class="bg-black text-white px-6 py-3 rounded ml-3">
-                    Update Status
+                    Update Progress Status
                 </button>
 
 

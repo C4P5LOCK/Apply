@@ -20,6 +20,8 @@ class Application extends Model
         'cgpa',
         'passport',
         'status',
+        'progress',
+        'admin_comment',
         'submitted_at',
     ];
 

@@ -5,6 +5,21 @@
 
                 <h2 class="text-2xl font-bold mb-6">Application Preview</h2>
 
+                @if($application->admin_comment)
+
+                    <div class="bg-yellow-100 text-yellow-800 p-4 rounded mt-6">
+
+                        <strong>Admin Comment:</strong>
+
+                        <p class="mt-2">
+                            {{ $application->admin_comment }}
+                        </p>
+
+                    </div>
+
+                @endif
+
+
                 <div class="space-y-4">
                     @if($application->passport)
                       <img src="{{ asset('storage/' . $application->passport) }}"
@@ -48,11 +63,12 @@
                          class="bg-gray-200 px-6 py-3 rounded mr-3">
                          Edit Application
                     </a>
+                    <button type="submit" class="bg-black text-white px-6 py-3 rounded">
+                        Final Submit
+                    </button>
                     @endif
 
-                    <!-- <button type="submit" class="bg-black text-white px-6 py-3 rounded">
-                        Final Submit
-                    </button> -->
+                    
 
                     <a href="{{ route('application.create') }}" class="ml-4 text-gray-600">
                         Go Back

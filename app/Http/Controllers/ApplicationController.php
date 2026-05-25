@@ -42,6 +42,7 @@ class ApplicationController extends Controller
 
         $application = Application::create($validated);
 
+        //$application->status = 'submitted';
         $application->application_number = 'APP-' . date('Y') . '-' . str_pad($application->id, 4, '0', STR_PAD_LEFT);
 
         $application->save();

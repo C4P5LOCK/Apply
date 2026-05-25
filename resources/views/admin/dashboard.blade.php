@@ -27,7 +27,7 @@
     </div>
 
     <div class="bg-yellow-100 p-6 rounded-lg">
-        <h3 class="text-sm text-yellow-700">Under Review</h3>
+        <h3 class="text-sm text-yellow-700">Pending</h3>
         <p class="text-3xl font-bold mt-2">
             {{ $underReviewApplications }}
         </p>
@@ -95,12 +95,14 @@
 
                     <thead>
                         <tr class="border-b bg-gray-100">
-                            <th class="p-3 text-left">APP NO<th>
+                            <th class="p-3 text-left">APP NO</th>
                             <th class="p-3 text-left">Name</th>
+                            
                             <th class="p-3 text-left">School</th>
                             <th class="p-3 text-left">Status</th>
                             <th class="p-3 text-left">Passport</th>
                             <th class="p-3 text-left">Action</th>
+                            <th class="p-3 text-left">Verdict</th>
                         </tr>
                     </thead>
 
@@ -154,6 +156,10 @@
                                         View
                                     </a>
 
+                                </td>
+
+                                <td class="p-3">
+                                    {{ucfirst($application->progress)}}
                                 </td>
 
                             </tr>
