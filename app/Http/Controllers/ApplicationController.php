@@ -14,6 +14,68 @@ class ApplicationController extends Controller
         return view('application.create');
     }
 
+    public function stepOne()
+{
+    return view('application.step1');
+}
+
+    public function storeStepOne(Request $request)
+    {
+        $validated = $request->validate([
+            'full_name' => 'required',
+            'phone' => 'required',
+            'gender' => 'required',
+            'dob' => 'required',
+            'address' => 'required',
+        ]);
+
+        $validated['user_id'] = auth()->id();
+
+        $application = Application::create($validated);
+
+        return redirect()->route('application.step2', $application);
+    }
+
+
+    public function stepTwo(Application $application)
+{
+    return view('application.step2', compact('application'));
+}
+
+public function storeStepTwo(Request $request, Application $application)
+{
+    $validated = $request->validate([
+        'school' => 'required',
+        'qualification' => 'required',
+        'cgpa' => 'nullable',
+    ]);
+
+    $application->update($validated);
+
+    return redirect()->route('application.step3', $application);
+}
+
+
+public function stepThree(Application $application)
+{
+    return view('application.step3', compact('application'));
+}
+
+public function storeStepThree(Request $request, Application $application)
+{
+    $validated = $request->validate([
+        'passport' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+    ]);
+
+    if ($request->hasFile('passport')) {
+        $validated['passport'] = $request->file('passport')->store('passports', 'public');
+    }
+
+    $application->update($validated);
+
+    return redirect('/application/preview/' . $application->id);
+}
+
     public function store(Request $request)
     {
         $existingApplication = Application::where('user_id', auth()->id())->first();
@@ -70,6 +132,8 @@ class ApplicationController extends Controller
         'status' => 'submitted',
         'submitted_at' => now(),
     ]);
+
+    $application->application_number = 'APP-' . date('Y') . '-' . str_pad($application->id, 4, '0', STR_PAD_LEFT);
 
     return redirect()->route('dashboard')->with('success', 'Application submitted successfully!');
 }

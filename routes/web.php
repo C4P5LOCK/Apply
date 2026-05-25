@@ -35,7 +35,21 @@ Route::middleware('auth')->group(function () {
 
     Route::put('/application/update/{application}', [ApplicationController::class, 'update'])->name('application.update');
     Route::get('/application/pdf/{application}',[ApplicationController::class, 'downloadPdf'])->name('application.pdf');
-});
+
+    Route::get('/application/step1', [ApplicationController::class, 'stepOne'])
+    ->name('application.step1');
+
+    Route::post('/application/step1', [ApplicationController::class, 'storeStepOne'])->name('application.step1.store');
+
+    Route::get('/application/step2/{application}', [ApplicationController::class, 'stepTwo'])->name('application.step2');
+
+    Route::post('/application/step2/{application}', [ApplicationController::class, 'storeStepTwo'])->name('application.step2.store');
+
+    Route::get('/application/step3/{application}', [ApplicationController::class, 'stepThree'])->name('application.step3');
+
+    Route::post('/application/step3/{application}', [ApplicationController::class, 'storeStepThree'])->name('application.step3.store');  
+ 
+    });
 
 Route::middleware(['auth', 'admin'])->group(function () {
 
