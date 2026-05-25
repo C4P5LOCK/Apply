@@ -6,6 +6,8 @@ use App\Mail\ApplicationStatusMail;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Application;
 use Illuminate\Http\Request;
+use App\Exports\ApplicationsExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
 {
@@ -63,4 +65,9 @@ class AdminController extends Controller
 
     return redirect()->back()->with('success', 'Application status updated.');
     }
+
+    public function export()
+        {
+            return Excel::download(new ApplicationsExport, 'applications.xlsx');
+        }
 }

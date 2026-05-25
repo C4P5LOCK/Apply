@@ -135,6 +135,7 @@ public function storeStepThree(Request $request, Application $application)
 
     $application->application_number = 'APP-' . date('Y') . '-' . str_pad($application->id, 4, '0', STR_PAD_LEFT);
 
+    $application->save();
     return redirect()->route('dashboard')->with('success', 'Application submitted successfully!');
 }
 

@@ -5,6 +5,18 @@
 
                 <h2 class="text-2xl font-bold mb-6">Step 3: Upload Passport</h2>
 
+                <div class="mb-6">
+                    <div class="flex justify-between text-sm mb-2">
+                        <span class="font-bold text-black">Personal Info</span>
+                        <span class="text-gray-500">Academic Info</span>
+                        <span class="text-gray-500"><strong>Uploads</strong></span>
+                        <span class="text-gray-500">Preview</span>
+                    </div>
+
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="bg-black h-2 rounded-full" style="width: 75%"></div>
+                    </div>
+                </div>
                 <form method="POST"
                       action="{{ route('application.step3.store', $application) }}"
                       enctype="multipart/form-data">

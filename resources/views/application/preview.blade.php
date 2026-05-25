@@ -4,7 +4,18 @@
             <div class="bg-white p-8 rounded-lg shadow">
 
                 <h2 class="text-2xl font-bold mb-6">Application Preview</h2>
+                <div class="mb-6">
+                    <div class="flex justify-between text-sm mb-2">
+                        <span class="font-bold text-black">Personal Info</span>
+                        <span class="text-gray-500">Academic Info</span>
+                        <span class="text-gray-500">Uploads</span>
+                        <span class="text-gray-500"><strong>Preview</strong></span>
+                    </div>
 
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="bg-black h-2 rounded-full" style="width: 100%"></div>
+                    </div>
+                </div>
                 @if($application->admin_comment)
 
                     <div class="bg-yellow-100 text-yellow-800 p-4 rounded mt-6">

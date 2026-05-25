@@ -5,6 +5,18 @@
 
                 <h2 class="text-2xl font-bold mb-6">Step 2: Academic Information</h2>
 
+                <div class="mb-6">
+                    <div class="flex justify-between text-sm mb-2">
+                        <span class="font-bold text-black">Personal Info</span>
+                        <span class="text-gray-500"><strong>Academic Info</strong></span>
+                        <span class="text-gray-500">Uploads</span>
+                        <span class="text-gray-500">Preview</span>
+                    </div>
+
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="bg-black h-2 rounded-full" style="width: 50%"></div>
+                    </div>
+                </div>
                 <form method="POST" action="{{ route('application.step2.store', $application) }}">
                     @csrf
 
@@ -19,8 +31,11 @@
                             Continue to Uploads
                         </button>
                     </div>
+                    
                 </form>
-
+<a href="{{ route('application.step1') }}" class="text-gray-600 mr-4">
+    Back
+</a>
             </div>
         </div>
     </div>

@@ -58,6 +58,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/application/{application}',[AdminController::class, 'show'])->name('admin.application.show');
 
     Route::post('/admin/application/{application}/status',[AdminController::class, 'updateStatus'])->name('admin.application.status');
+
+    Route::get('/admin/applications/export', [AdminController::class, 'export'])->name('admin.applications.export');
 });
 
 require __DIR__.'/auth.php';
