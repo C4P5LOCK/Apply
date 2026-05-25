@@ -49,6 +49,12 @@
 
 </div>
 
+//CHART CANVAS
+<div class="bg-white p-6 rounded-lg shadow mb-8">
+    <h3 class="text-xl font-bold mb-4">Applications by Status</h3>
+
+    <canvas id="statusChart" height="100"></canvas>
+</div>
                                 <form method="GET"
                     action="{{ route('admin.dashboard') }}"
                     class="mb-6 flex gap-4">
@@ -181,5 +187,27 @@
         </div>
 
     </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const ctx = document.getElementById('statusChart');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Submitted', 'Pending', 'Approved', 'Rejected'],
+            datasets: [{
+                label: 'Applications',
+                data: [
+                    {{ $submittedApplications }},
+                    {{ $underReviewApplications }},
+                    {{ $approvedApplications }},
+                    {{ $rejectedApplications }}
+                ]
+            }]
+        }
+    });
+</script>
 
 </x-app-layout>
