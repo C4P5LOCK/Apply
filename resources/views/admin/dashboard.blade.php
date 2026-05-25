@@ -165,6 +165,17 @@
                                          class="bg-black text-white px-4 py-2 rounded">
                                         View
                                     </a>
+                                    <form method="POST"
+                                        action="{{ route('admin.application.destroy', $application) }}"
+                                        class="inline">
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <button onclick="return confirm('Move this application to trash?')"
+                                                class="bg-red-600 text-white px-4 py-2 rounded">
+                                            Delete
+                                        </button>
+                                    </form>
 
                                 </td>
 

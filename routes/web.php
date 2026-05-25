@@ -60,6 +60,14 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/admin/application/{application}/status',[AdminController::class, 'updateStatus'])->name('admin.application.status');
 
     Route::get('/admin/applications/export', [AdminController::class, 'export'])->name('admin.applications.export');
+
+    Route::delete('/admin/application/{application}', [AdminController::class, 'destroy'])->name('admin.application.destroy');
+
+    Route::get('/admin/applications/trash', [AdminController::class, 'trash'])->name('admin.applications.trash');
+
+    Route::post('/admin/application/{id}/restore', [AdminController::class, 'restore'])->name('admin.application.restore');
+
+     Route::delete('/admin/application/{id}/force-delete', [AdminController::class, 'forceDelete'])->name('admin.application.forceDelete');
 });
 
 require __DIR__.'/auth.php';

@@ -70,4 +70,9 @@ class AdminController extends Controller
         {
             return Excel::download(new ApplicationsExport, 'applications.xlsx');
         }
+
+        public function destroy(Application $application){
+            $application->delete();
+            return redirect()->back()->with('success'. 'Application moved to trash');
+        }
 }
