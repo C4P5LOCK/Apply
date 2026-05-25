@@ -52,6 +52,10 @@
                         Under Review
                     </option>
 
+                    <option value="submitted" {{ $application->status === 'submitted' ? 'selected' : '' }}>
+                        Submitted
+                    </option>
+
                     <option value="approved" {{ $application->status === 'approved' ? 'selected' : '' }}>
                         Approved
                     </option>

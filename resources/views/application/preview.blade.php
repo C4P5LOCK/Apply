@@ -38,6 +38,11 @@
                     <span class="bg-green-100 text-green-700 px-6 py-3 rounded mr-3">
                          Application Submitted
                     </span>
+
+                    <a href="{{ route('application.pdf', $application) }}"
+                         class="bg-red-500 text-white px-6 py-3 rounded">
+                          Download PDF
+                    </a>
                     @else
                     <a href="{{ route('application.edit', $application) }}"
                          class="bg-gray-200 px-6 py-3 rounded mr-3">

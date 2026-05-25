@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Application;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ApplicationController extends Controller
 {
@@ -113,5 +114,18 @@ public function update(Request $request, Application $application)
     $application->update($validated);
 
     return redirect()->route('application.preview', $application);
+}
+
+public function downloadPdf(Application $application)
+{
+    if ($application->user_id !== auth()->id()) {
+        abort(403);
+    }
+
+    $pdf = Pdf::loadView('application.pdf', compact('application'));
+
+    return $pdf->download(
+        $application->application_number . '.pdf'
+    );
 }
 }

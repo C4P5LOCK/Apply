@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/application/edit/{application}', [ApplicationController::class, 'edit'])->name('application.edit');
 
     Route::put('/application/update/{application}', [ApplicationController::class, 'update'])->name('application.update');
+    Route::get('/application/pdf/{application}',[ApplicationController::class, 'downloadPdf'])->name('application.pdf');
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
