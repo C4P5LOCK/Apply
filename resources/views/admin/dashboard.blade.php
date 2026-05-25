@@ -10,6 +10,45 @@
                     Admin Dashboard
                 </h2>
 
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-8">
+
+    <div class="bg-blue-100 p-6 rounded-lg">
+        <h3 class="text-sm text-blue-700">Total Applications</h3>
+        <p class="text-3xl font-bold mt-2">
+            {{ $totalApplications }}
+        </p>
+    </div>
+
+    <div class="bg-indigo-100 p-6 rounded-lg">
+        <h3 class="text-sm text-indigo-700">Submitted</h3>
+        <p class="text-3xl font-bold mt-2">
+            {{ $submittedApplications }}
+        </p>
+    </div>
+
+    <div class="bg-yellow-100 p-6 rounded-lg">
+        <h3 class="text-sm text-yellow-700">Under Review</h3>
+        <p class="text-3xl font-bold mt-2">
+            {{ $underReviewApplications }}
+        </p>
+    </div>
+
+    <div class="bg-green-100 p-6 rounded-lg">
+        <h3 class="text-sm text-green-700">Approved</h3>
+        <p class="text-3xl font-bold mt-2">
+            {{ $approvedApplications }}
+        </p>
+    </div>
+
+    <div class="bg-red-100 p-6 rounded-lg">
+        <h3 class="text-sm text-red-700">Rejected</h3>
+        <p class="text-3xl font-bold mt-2">
+            {{ $rejectedApplications }}
+        </p>
+    </div>
+
+</div>
+
                                 <form method="GET"
                     action="{{ route('admin.dashboard') }}"
                     class="mb-6 flex gap-4">
@@ -74,7 +113,7 @@
                             <td class="p-3">
                                 {{$application->application_number}}
                                 </td>
-                                
+
                                 <td class="p-3">
                                     {{ $application->full_name }}
                                 </td>
