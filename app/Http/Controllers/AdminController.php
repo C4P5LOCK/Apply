@@ -66,7 +66,8 @@ class AdminController extends Controller
     'description' => 'Application status updated to ' . $request->progress
     ]);
 
-    Mail::to($application->user->email)->send(new ApplicationStatusMail($application));
+    //Mail::to($application->user->email)->send(new ApplicationStatusMail($application));
+    Mail::to($application->user->email)->queue(new ApplicationStatusMail($application));
 
     return redirect()->back()->with('success', 'Application status updated.');
     }

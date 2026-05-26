@@ -6,8 +6,10 @@ use App\Models\Application;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class ApplicationStatusMail extends Mailable
+//class ApplicationStatusMail extends Mailable
+class ApplicationStatusMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -20,7 +22,6 @@ class ApplicationStatusMail extends Mailable
 
     public function build()
     {
-        return $this->subject('Application Status Update')
-            ->view('emails.application-status');
+        return $this->subject('Application Status Update')->view('emails.application-status');
     }
 }

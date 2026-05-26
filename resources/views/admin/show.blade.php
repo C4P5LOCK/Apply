@@ -35,7 +35,7 @@
 
                 <p><strong>Qualification:</strong> {{ $application->qualification }}</p>
 
-                <p><strong>Status:</strong> {{ ucfirst($application->status) }}</p>
+                <p><strong>Status:</strong> {{ ucfirst($application->progress) }}</p>
 
             </div>
 

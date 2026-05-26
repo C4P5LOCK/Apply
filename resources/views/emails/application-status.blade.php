@@ -4,7 +4,7 @@
 
 <p>
     <strong>Current Status:</strong>
-    {{ ucfirst(str_replace('_', ' ', $application->status)) }}
+    {{ ucfirst(str_replace('_', ' ', $application->progress)) }}
 </p>
 
 <p>Thank you.</p>
