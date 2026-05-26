@@ -5,6 +5,7 @@ use App\Http\Controllers\ApplicationController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Application;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Api\ApplicationApiController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -69,5 +70,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
      Route::delete('/admin/application/{id}/force-delete', [AdminController::class, 'forceDelete'])->name('admin.application.forceDelete');
 });
+
+
 
 require __DIR__.'/auth.php';
