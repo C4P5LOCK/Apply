@@ -74,6 +74,33 @@
             </form>
 
         </div>
+<div class="mt-8">
+
+    <h3 class="text-xl font-bold mb-4">
+        Activity Timeline
+    </h3>
+
+    @foreach($application->logs as $log)
+
+        <div class="border-l-4 border-black pl-4 mb-4">
+
+            <p class="font-bold">
+                {{ ucfirst(str_replace('_', ' ', $log->action)) }}
+            </p>
+
+            <p class="text-gray-600">
+                {{ $log->description }}
+            </p>
+
+            <p class="text-sm text-gray-400">
+                {{ $log->created_at->diffForHumans() }}
+            </p>
+
+        </div>
+
+    @endforeach
+
+</div>
 
     </div>
 

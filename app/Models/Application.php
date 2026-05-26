@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\ActivityLog;
 
 class Application extends Model
 {
     //
     use SoftDeletes;
-    
+
     protected $fillable = [
         'user_id',
         'full_name',
@@ -31,5 +32,10 @@ class Application extends Model
     public function user()
 {
     return $this->belongsTo(User::class);
+}
+
+public function logs()
+{
+    return $this->hasMany(ActivityLog::class);
 }
 }

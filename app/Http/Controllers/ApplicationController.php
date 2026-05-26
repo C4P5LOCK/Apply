@@ -32,6 +32,10 @@ class ApplicationController extends Controller
         $validated['user_id'] = auth()->id();
 
         $application = Application::create($validated);
+        $application->logs()->create([
+          'action' => 'created',
+           'description' => 'Application was created.'
+        ]);
 
         return redirect()->route('application.step2', $application);
     }
@@ -136,6 +140,10 @@ public function storeStepThree(Request $request, Application $application)
     $application->application_number = 'APP-' . date('Y') . '-' . str_pad($application->id, 4, '0', STR_PAD_LEFT);
 
     $application->save();
+    $application->logs()->create([
+    'action' => 'submitted',
+    'description' => 'Application was submitted.'
+     ]);
     return redirect()->route('dashboard')->with('success', 'Application submitted successfully!');
 }
 
