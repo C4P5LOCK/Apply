@@ -79,6 +79,16 @@
                     </button>
                     @endif
 
+                    @if($application->payment_status !== 'paid')
+    <a href="{{ route('application.pay', $application) }}"
+       class="bg-green-600 text-white px-6 py-3 rounded">
+        Pay Application Fee
+    </a>
+@else
+    <span class="bg-green-100 text-green-700 px-6 py-3 rounded">
+        Payment Completed
+    </span>
+@endif
                     
 
                     <a href="{{ route('application.create') }}" class="ml-4 text-gray-600">

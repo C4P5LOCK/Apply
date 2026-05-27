@@ -97,6 +97,9 @@
                     </button>
 
                 </form>
+
+           {{--<livewire:search-applications />--}}
+
                 <a href="{{ route('admin.applications.export') }}"
                     class="inline-block bg-green-600 text-white px-6 py-3 rounded mb-4">
                         Export Excel

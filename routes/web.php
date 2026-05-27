@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Application;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Api\ApplicationApiController;
+use App\Http\Controllers\PaymentController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -49,6 +51,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/application/step3/{application}', [ApplicationController::class, 'stepThree'])->name('application.step3');
 
     Route::post('/application/step3/{application}', [ApplicationController::class, 'storeStepThree'])->name('application.step3.store');  
+
+    //Payment
+    Route::get('/application/{application}/pay', [PaymentController::class, 'initialize'])->name('application.pay');
+
+    Route::get('/payment/callback', [PaymentController::class, 'callback'])->name('payment.callback');
  
     });
 

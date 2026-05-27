@@ -26,6 +26,9 @@ class Application extends Model
         'status',
         'progress',
         'admin_comment',
+        'payment_status',
+        'payment_reference',
+        'amount',
         'submitted_at',
     ];
 
